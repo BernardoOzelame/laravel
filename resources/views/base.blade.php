@@ -5,17 +5,22 @@
     <body>
         <h1>@yield('titulo')</h1>
         <hr>
+
         <a href="{{ route('index') }}">Inicial</a>
         |
         <a href="{{ route('funcionarios') }}">Funcionários</a>
-        |
-        <a href="{{ route('usuarios') }}">Usuários</a>
+
+        @if(Auth::user() && Auth::user()['admin'] === 1)
+            |
+            <a href="{{ route('usuarios') }}">Usuários</a>
+        @endif
+
         |
         @if (Auth::user())
-        Olá, <strong>{{ Auth::user()['name'] }}</strong>.
-        <a href="{{route('logout')}}">Logout</a>
+            Olá, <strong>{{ Auth::user()['name'] }}</strong>!
+            <a href="{{route('logout')}}">Logout</a>
         @else
-        <a href="{{ route('login') }}">Login</a>
+            <a href="{{ route('login') }}">Login</a>
         @endif
         <hr>
         @yield('conteudo')
