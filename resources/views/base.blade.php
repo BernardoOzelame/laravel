@@ -11,7 +11,12 @@
         |
         <a href="{{ route('usuarios') }}">Usuários</a>
         |
+        @if (Auth::user())
+        Olá, <strong>{{ Auth::user()['name'] }}</strong>.
+        <a href="{{route('logout')}}">Logout</a>
+        @else
         <a href="{{ route('login') }}">Login</a>
+        @endif
         <hr>
         @yield('conteudo')
     </body>

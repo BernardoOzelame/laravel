@@ -24,19 +24,22 @@ Route::delete('funcionarios/apagar/{func}', [FuncionariosController::class, 'del
 
 //----------------------------------------------------------------------------------------------------------------------
 
-Route::get('/usuarios', [UsuariosController::class, 'index'])->name('usuarios');
+Route::prefix('usuarios')->middleware('auth')->group(function() {
+    Route::get('/', [UsuariosController::class, 'index'])->name('usuarios');
 
-Route::get('/usuarios/cadastrar', [UsuariosController::class, 'cadastrar'])->name('usuarios/cadastrar');
+    Route::get('/cadastrar', [UsuariosController::class, 'cadastrar'])->name('usuarios/cadastrar');
+    
+    Route::post('/cadastrar', [UsuariosController::class, 'gravar'])->name('usuarios/gravar');
+    
+    Route::get('/editar/{user}', [UsuariosController::class, 'editar'])->name('usuarios/editar');
+    
+    Route::put('/editar/{user}', [UsuariosController::class, 'editarGravar']);
+    
+    Route::get('/apagar/{user}', [UsuariosController::class, 'apagar'])->name('usuarios/apagar'); 
+    
+    Route::delete('/apagar/{user}', [UsuariosController::class, 'deletar']);
+});
 
-Route::post('/usuarios/cadastrar', [UsuariosController::class, 'gravar'])->name('usuarios/gravar');
-
-Route::get('/usuarios/editar/{user}', [UsuariosController::class, 'editar'])->name('usuarios/editar');
-
-Route::put('/usuarios/editar/{user}', [UsuariosController::class, 'editarGravar']);
-
-Route::get('/usuarios/apagar/{user}', [UsuariosController::class, 'apagar'])->name('usuarios/apagar'); 
-
-Route::delete('usuarios/apagar/{user}', [UsuariosController::class, 'deletar']);
 
 //----------------------------------------------------------------------------------------------------------------------
 
