@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('titulo')</title>
-    <meta name="author" content="Bernardo Ozelame">
+    <title>Tailwind Admin Template</title>
+    <meta name="author" content="David Grzyb">
     <meta name="description" content="">
-    <link href="{{ asset('css/tailwind.min.css') }}" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
         .font-family-karla { font-family: karla; }
@@ -19,7 +21,7 @@
         .account-link:hover { background: #3d68ff; }
     </style>
 </head>
-    <body class="bg-gray-100 font-family-karla flex">
+<body class="bg-gray-100 font-family-karla flex">
 
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
@@ -136,13 +138,9 @@
     
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
             <main class="w-full flex-grow p-6">
-                <h1 class="text-3xl text-black pb-6">@yield('titulo')</h1>
+                <h1 class="text-3xl text-black pb-6">Blank Page</h1>
 
-                <div class="flex flex-wrap">
-                    <div class="leading-loose">
-                        @yield('conteudo')
-                    </div>
-                </div>
+                <!-- Content goes here! 😁 -->
             </main>
     
             <footer class="w-full bg-white text-right p-4">
