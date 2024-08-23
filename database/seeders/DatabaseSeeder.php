@@ -7,8 +7,9 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder {
     public function run(): void {
-        $this->call(
-            FuncionariosSeeder::class
-        );
+        $this->call([
+            FuncionariosSeeder::class,
+            UsuariosSeeder::class
+        ]);
     }
 }
