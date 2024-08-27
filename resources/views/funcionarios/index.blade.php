@@ -4,7 +4,7 @@
 
 @section ('conteudo')
     <p>
-        <a href="{{ route('funcionarios/cadastrar') }}">Cadastrar funcionário</a>
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="{{ route('funcionarios/cadastrar') }}"><i class="fas fa-plus mr-3   "></i> Cadastrar funcionário</a>
     </p>
     <p>Veja a lista de funcionários</p>
 

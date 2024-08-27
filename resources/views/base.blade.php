@@ -57,9 +57,9 @@
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 <span class="flex items-center mr-8">
                     @if(Auth::user())
-                        {{ Auth::user()['name'] }}
+                        Olá, {{ Auth::user()['name'] }}!
                     @else
-                        Visitante
+                        Olá, Visitante!
                     @endif
                 </span>
                 <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
@@ -138,6 +138,19 @@
                 <h1 class="text-3xl text-black pb-6">@yield('titulo')</h1>
 
                 <div class="flex flex-wrap">
+                    <div class="leading-loose min-w-full mb-2">
+                        @if(session('erro'))
+                        <div class="bg-red-200 border-t-4 border-red-500 rounded-b text-red-800 px-4 py-3 shadow-md" role="alert">
+                            <div class="flex">
+                              <div class="py-2"><i class="fas fa-exclamation-triangle mr-3"></i></div>
+                              <div>
+                                <p class="font-bold">Erro!</p>
+                                <p class="text-sm">{{ session('erro') }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        @endif
+                    </div>
                     <div class="leading-loose">
                         @yield('conteudo')
                     </div>
