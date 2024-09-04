@@ -18,6 +18,7 @@ class FuncionariosController extends Controller {
     }
 
     public function gravar(Request $form) {
+        dd($form);
         $dados = $form->validate([
             'nome' => 'required',
             'cargo' => 'required',

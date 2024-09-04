@@ -15,7 +15,7 @@
     </div>
 @endif
 
-<form method="post" action="{{ route('funcionarios/gravar') }}" class="p-10 bg-white rounded shadow-xl">
+<form method="post" enctype="multipart/form-data" action="{{ route('funcionarios/gravar') }}" class="p-10 bg-white rounded shadow-xl">
     @csrf
     <div>
         <label class="block text-sm text-gray-600" for="nome">Nome</label>
@@ -32,6 +32,10 @@
     <div class="mt-2">
         <label class="block text-sm text-gray-600" for="salario">Salário</label>
         <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" type="number" step='any' name="salario" placeholder="Salário" value="{{ old('salario') }}">
+    </div>
+    <div class="mt-2">
+        <label class="block text-sm text-gray-600" for="imagem">Imagem</label>
+        <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="imagem" name="imagem" type="file" required="" placeholder="Idade" aria-label="Idade" value="{{ old('idade') }}">
     </div>
     <div class="mt-6">
         <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Salvar</button>
