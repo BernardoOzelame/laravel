@@ -13,6 +13,7 @@ class Funcionario extends Model {
         'nome',
         'cargo',
         'departamento',
-        'salario'
+        'salario',
+        'imagem',
     ];
 }

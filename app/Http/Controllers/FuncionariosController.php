@@ -18,13 +18,16 @@ class FuncionariosController extends Controller {
     }
 
     public function gravar(Request $form) {
-        dd($form);
+        $img = $form->file('imagem')->store('funcionarios', 'imagens');
+        
         $dados = $form->validate([
             'nome' => 'required',
             'cargo' => 'required',
             'departamento' => 'required',
-            'salario' => 'required|decimal:0,3'
+            'salario' => 'required|decimal:0,3',
+            'imagem' => 'required'
         ]);
+        $dados['imagem']= $img;
         Funcionario::create($dados);
         
         return redirect()->route('funcionarios');
