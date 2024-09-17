@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FuncionarioCadastrado;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FuncionariosController extends Controller {
     public function index() {
-        $dados = Funcionario::all();
+        $dados = Funcionario::get(); 
+        // eloquent = comandos da model (get(), create(), where(), orderBy(), all())
+        // get() = acesso normal aos não apagados
+        // onlyTrashed()->get() = pega apenas os dados que foram apagados 
+        // withTrashed()->get() = pega todos os dados (mesmo apagados)
         return view('funcionarios/index', [ 
             'funcionarios' => $dados,
         ]); 
@@ -28,9 +34,13 @@ class FuncionariosController extends Controller {
             'imagem' => 'required'
         ]);
         $dados['imagem']= $img;
-        Funcionario::create($dados);
+
+        // Funcionario::create($dados);
         
-        return redirect()->route('funcionarios');
+        Mail::to('alguem@batata.com')->send(new FuncionarioCadastrado());
+        return;
+
+        // return redirect()->route('funcionarios');
     }
 
     public function editar(Funcionario $func) {
