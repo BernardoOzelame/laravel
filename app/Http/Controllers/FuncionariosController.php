@@ -19,6 +19,12 @@ class FuncionariosController extends Controller {
         ]); 
     }
 
+    public function ver(Funcionario $func) {
+        return view('funcionarios/ver', [
+            'funcionario' => $func
+        ]);
+    }
+
     public function cadastrar() {
         return view('funcionarios/cadastrar');
     }
@@ -35,12 +41,11 @@ class FuncionariosController extends Controller {
         ]);
         $dados['imagem']= $img;
 
-        // Funcionario::create($dados);
+        $funcionario = Funcionario::create($dados);
         
-        Mail::to('alguem@batata.com')->send(new FuncionarioCadastrado());
-        return;
+        Mail::to('alguem@batata.com')->send(new FuncionarioCadastrado($funcionario));
 
-        // return redirect()->route('funcionarios');
+        return redirect()->route('funcionarios');
     }
 
     public function editar(Funcionario $func) {

@@ -21,7 +21,11 @@
             <tbody class="text-gray-700">
                 @foreach($funcionarios as $idx => $funcionario)
                     <tr @if ($idx % 2) class="bg-gray-200" @endif>
-                        <td class="text-left py-3 px-4">{{ $funcionario['nome'] }}</td>
+                        <td class="text-left py-3 px-4">
+                            <a href="{{ route('funcionarios/ver', $funcionario['id']) }}">
+                                {{ $funcionario['nome'] }}
+                            </a>
+                        </td>
                         <td class="text-left py-3 px-4">{{ $funcionario['cargo'] }}</td>
                         <td class="text-left py-3 px-4">{{ $funcionario['departamento'] }}</td>
                         <td class="text-left py-3 px-4">R$ {{ $funcionario['salario'] }}</td>

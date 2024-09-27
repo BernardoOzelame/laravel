@@ -10,6 +10,8 @@ Route::get('/', function () {
 
 Route::get('/funcionarios', [FuncionariosController::class, 'index'])->name('funcionarios');
 
+Route::get('/funcionarios/ver/{func}', [FuncionariosController::class, 'ver'])->name('funcionarios/ver');
+
 Route::get('/funcionarios/cadastrar', [FuncionariosController::class, 'cadastrar'])->name('funcionarios/cadastrar');
 
 Route::post('/funcionarios/cadastrar', [FuncionariosController::class, 'gravar'])->name('funcionarios/gravar');
