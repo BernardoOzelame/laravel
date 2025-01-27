@@ -23,7 +23,7 @@ class UsuariosController extends Controller {
         $dados = $form->validate([
             'name' => 'required',
             'email' => 'required|email|unique:usuarios',
-            'username' => 'required',
+            'username' => 'required|unique:usuarios',
             'password' => 'required',
             'admin' => 'required|in:0,1',
         ]);
@@ -44,13 +44,24 @@ class UsuariosController extends Controller {
             'name' => 'required',
             'email' => 'required|email',
             'username' => 'required',
-            'password' => 'required',
+            'password' => 'nullable',
             'admin' => 'required|in:0,1',
         ]);
 
+        if (empty($dados['password'])) {
+            unset($dados['password']);
+        } else {
+            $dados['password'] = Hash::make($dados['password']);
+        }
+
         $user->fill($dados);
         $user->save();
-        return redirect()->route('usuarios');
+
+        if (!empty($dados['password'])) {
+            return redirect()->route('usuarios')->with('senhaAlterada', 'A senha de <b>' . $dados['username'] . '</b> foi alterada.');
+        } else {
+            return redirect()->route('usuarios');
+        }        
     }
 
     public function apagar(Usuario $user) {

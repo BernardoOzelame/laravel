@@ -27,4 +27,12 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception) {
+        if ($exception instanceof \Illuminate\Auth\Access\AuthorizationException) {
+            $rotaQueTentouAcessar = $request->path();
+            return redirect('/semPermissao')->with('rotaQueTentouAcessar', $rotaQueTentouAcessar);
+        }
+        return parent::render($request, $exception);
+    }
 }

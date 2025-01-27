@@ -57,8 +57,16 @@ class FuncionariosController extends Controller {
             'nome' => 'required',
             'cargo' => 'required',
             'departamento' => 'required',
-            'salario' => 'required|decimal:0,3'
+            'salario' => 'required|decimal:0,3',
+            'imagem' => 'nullable|image'
         ]);
+
+        if ($form->hasFile('imagem')) {
+            $img = $form->file('imagem')->store('funcionarios', 'imagens');
+            $dados['imagem'] = $img;
+        } else {
+            $dados['imagem'] = $func->imagem;
+        }
 
         $func->fill($dados);
         $func->save();

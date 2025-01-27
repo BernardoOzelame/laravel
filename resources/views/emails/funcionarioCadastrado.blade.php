@@ -9,7 +9,7 @@
 <p>
     Olha a foto do funcionário:
     <br>
-    <img src="{{ $message->embed('img/' . $funcionario->imagem) }}">
+    <img src="{{ $message->embed('img/' . $funcionario->imagem) }}" style="max-width: 300px;">
 </p>
 
 <p>Para saber mais, visite <a href="{{ route('funcionarios/ver', $funcionario->id) }}">o perfil do funcionário</a>.</p>
